@@ -103,8 +103,8 @@ const PrevBtn = styled.button`
     width: 0.8rem;
     height: 0.8rem;
     margin-left: 0.5rem;
-    border-top: 0.1rem solid #333;
-    border-right: 0.1rem solid #333;
+    border-top: 0.1rem solid ${(props) => props.theme.bgColor};
+    border-right: 0.1rem solid ${(props) => props.theme.bgColor};
     transform: rotate(225deg );
   }
   :hover{
@@ -142,7 +142,7 @@ const IdInput = styled.input`
   font-size: 1rem;
   background-color: transparent;
   border: none;
-  border-bottom : white 1px solid;
+  border-bottom :  1px solid ${(props) => props.theme.color};
   color:  ${(props) => props.theme.color};
 `
 const ErrorMessage = styled.div`
@@ -160,7 +160,7 @@ const SignUpBtn = styled.button`
   cursor: pointer;
   font-weight: 600;
   background-color: ${(props)=>props.theme.color};
-  color:  ${(props) => props.theme.BgColor};
+  color:  ${(props) => props.theme.bgColor};
 `
 const NoSignUpBtn = styled.button`
   width: 200px;

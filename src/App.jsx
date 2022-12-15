@@ -8,15 +8,18 @@ import Login from './pages/Login';
 import TodoMain from './pages/TodoMain';
 import { TodoProvider } from './hooks/TodoContext';
 import PrivateRoute from './Routes/PrivateRoute';
+import Header from './components/Header';
 
 const App = () => {
   const [toggleBtn, setToggleBtn] = useState(false)
   return (
   <TodoProvider>
-    <Global/>
-    <ThemeProvider theme={{ color: '#ffffff', bgColor: '#202020' }}>
+      <Global />
+    <ThemeProvider theme={toggleBtn ? { color: '#202020', bgColor: '#ffff' }:{ color: '#ffffff', bgColor: '#202020' }}>
     {/* <ThemeProvider theme={{ color: '#202020', bgColor: '#fff' }}> */}
-      <BgContainer>
+        <BgContainer>
+        <Header toggleBtn={toggleBtn} setToggleBtn={setToggleBtn}/>
+
         <BgBox>
         <Routes>
           <Route path='/' element={<Login/>} />
@@ -44,7 +47,7 @@ const BgBox = styled.div`
     height: 100vh;
     display: flex;
     border-radius: 50px;
-    border: thick double #fff;
+    border: thick double #5c5a5a;
     background-color: ${(props) => props.theme.bgColor};
    
 `

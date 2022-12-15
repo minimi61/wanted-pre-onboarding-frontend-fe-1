@@ -102,7 +102,7 @@ const IdInput = styled.input`
   font-size: 1rem;
   background-color: transparent;
   border: none;
-  border-bottom : white 1px solid;
+  border-bottom :  1px solid ${(props) => props.theme.color};
   color:  ${(props) => props.theme.color};
 `
 const LoginBtn = styled.button`
