@@ -27,8 +27,9 @@ const Header = ({toggleBtn,setToggleBtn}) => {
 const ToggleContainer = styled.div`
   position: relative;
   margin-top: 8rem;
-  left: 47%;
+  left: 600px;
   cursor: pointer;
+  height: 20px;
 
   > .toggle-container {
     width: 50px;
