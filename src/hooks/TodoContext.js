@@ -1,33 +1,37 @@
 import React, { createContext,useContext,useState } from 'react';
 
-const initialTodo = [
-  {
-    id: 1,
-    text: '과제 제출하기',
-      }
-]
-let idNum = 1
+
 const TodoContext = createContext();
 
 export const TodoProvider = ({ children }) => {
 
-  const [todoList, setTodoList] = useState(initialTodo)
-
+  const [todoList, setTodoList] = useState([{
+    id: 0,
+    todo: '과제 제출하기',
+    isCompleted: false,
+    userId : 0
+  }])
+  
   const addTodoItem = (newItem) => {
-    setTodoList([...todoList, { id: idNum++, text: newItem }])
+    setTodoList([...todoList, { id: newItem.id, todo: newItem.todo, isCompleted: newItem.isCompleted, userId: newItem.userId }])
   }
-  const delTodoItem = (item) => {
-    const newList = todoList.filter((_, index) => index !== item)
+  const delTodoItem = (id) => {
+    const newList = todoList.filter((data, index) => data.id !== id)
     setTodoList(newList)
   }
-  const updateTodoItem = (content) => {
-    
+  const updateTodoItem = (item) => {
+    const changeData = todoList.map((data, idx) =>item.id === data.id ?  {id:item.id, todo: item.todo, isCompleted:item.isCompleted, userId: item.userId}: data)
+    setTodoList(changeData)
   }
+  let todoListLength = todoList.length
 
   const contextValue = {
     todoList,
+    setTodoList,
     addTodoItem,
-    delTodoItem
+    delTodoItem,
+    updateTodoItem,
+    todoListLength
   }
   return  <TodoContext.Provider value={contextValue}>
     {children}

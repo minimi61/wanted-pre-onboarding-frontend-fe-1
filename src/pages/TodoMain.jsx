@@ -1,23 +1,44 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import TodoItem from '../components/TodoItem'
 import { useTodoContext } from '../hooks/TodoContext'
+import instance from '../api/apis'
+import { baseURL } from '../api/apis'
 
 const TodoMain = () => {
+  const [todos, setTodos] = useState([]);
+
+  const { todoList, addTodoItem, todoListLength,setTodoList } = useTodoContext();
+  useEffect(() => {
+    try {
+      instance.get(`todos`)
+        .then((res) => setTodoList(res.data))
+    }
+    catch (err){
+      if (err.response.data.statusCode === 401) {
+        alert("잘못된 접근입니다.");
+      }
+    }
+  }, [])
+  
   const [todoTask, setTodoTask] = useState('')
-  const { todoList,addTodoItem } = useTodoContext();
-  console.log(todoList)
+  console.log(todoTask)
   const onchangeTodo = (e) => {
-    // if(todoTask == '') return
     setTodoTask(e.target.value)
   }
+  
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    if(!todoTask) return
-    addTodoItem(todoTask)
+    if (!todoTask) return
+    if(todoListLength>=15) return alert('15개 이하로 작성해주세요')
+    // addTodoItem(todoTask)
+    // setTodos((prev)=>[...prev,])
+    instance.post(`todos`, { todo: todoTask })
+                .then(res=> addTodoItem(res.data))
     setTodoTask('')
   }
-  console.log(todoTask)
+  console.log(todoList)
   return (
     <form onSubmit={handleOnSubmit}>
       <TodoContainer>
@@ -29,7 +50,7 @@ const TodoMain = () => {
         />
         <AddBtn type='submit'>➕</AddBtn>
         <ListPadding>{
-          todoList.map((todo, index) => <TodoItem todo={todo} key={index} idx={index} />)}
+          todoList.map((todo, index) => <TodoItem todo={todo} key={index} idx={todo.id} />)}
         </ListPadding>
       </TodoContainer>
     </form>

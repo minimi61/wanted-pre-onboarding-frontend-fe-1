@@ -1,31 +1,48 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useTodoContext } from '../hooks/TodoContext'
+import instance from '../api/apis'
 
 const TodoItem = ({ todo, idx }) => {
-  const { delTodoItem } = useTodoContext();
+  const { delTodoItem,updateTodoItem,setTodoList } = useTodoContext();
   const [openInput, setOpenInput] = useState(false);
   const [inputContent, setInputContent] = useState('')
-
+  // console.log(todo)
   const onChangeText = (e) => {
     setInputContent(e.target.value)
   }
-  const deleteTask = () => {
-    delTodoItem(idx)
+  const clickUpdate = () => {
+    setOpenInput(!openInput)
   }
-  const updateTask = () => {
-    if (!inputContent) setOpenInput(!openInput)
-    
+  // const data = {
+  //   id: idx,
+  //   text: inputContent,
+  //   isCompleted: false,
+  //   userId: idx
+  // }
+
+  const updateTask = async() => {
+    if (inputContent==='') { setOpenInput(!openInput) }
+    if (inputContent) {
+      await instance.put(`todos/${idx}`,{todo:inputContent, isCompleted:todo.isCompleted})
+      .then(res=> updateTodoItem(res.data))
+      // updateTodoItem(data)
+      setOpenInput(false)
+    }
+  }
+  const deleteTask = async() => {
+    await instance.delete(`todos/${idx}`)
+    delTodoItem(idx)
   }
   return (
     <TodoUl>
       {openInput ? 
-        <li><input value={inputContent} onChange={onChangeText}/></li>
+        <TodoLi><input value={inputContent} onChange={onChangeText}/></TodoLi>
         :
-        <li> {todo.text}</li> 
+        <TodoLi> {todo.todo}</TodoLi> 
       }
           <div>
-            <Btns onClick={updateTask}>🖍</Btns>
+        {openInput ?<Btns onClick={updateTask}>✔</Btns> : <Btns onClick={clickUpdate}>🖍</Btns> }
             <Btns onClick={deleteTask}>❌</Btns>
           </div>
         </TodoUl>
@@ -35,6 +52,11 @@ const TodoItem = ({ todo, idx }) => {
 const TodoUl = styled.ul`
   display: flex;
   justify-content: space-between;
+`
+
+const TodoLi = styled.li`
+    color: ${(props) => props.theme.color};
+
 `
 
 const Btns = styled.button`
