@@ -1,5 +1,4 @@
 import React from 'react';
-import MainContainer from './components/MainContainer';
 import { Route, Routes } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
@@ -7,10 +6,11 @@ import Global from './styles/Global';
 import SingUp from './pages/SingUp';
 import Login from './pages/Login';
 import TodoMain from './pages/TodoMain';
+import { TodoProvider } from './hooks/TodoContext';
 
 const App = () => {
   return (
-  <>
+  <TodoProvider>
     <Global/>
     <ThemeProvider theme={{ color: '#ffffff', bgColor: '#202020' }}>
     {/* <ThemeProvider theme={{ color: '#202020', bgColor: '#fff' }}> */}
@@ -24,7 +24,7 @@ const App = () => {
         </BgBox>
       </BgContainer>
    </ThemeProvider>
- </>
+ </TodoProvider>
     );
 }
 const BgContainer = styled.div`
