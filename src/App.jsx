@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Route, Routes  } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
@@ -10,7 +10,7 @@ import { TodoProvider } from './hooks/TodoContext';
 import PrivateRoute from './Routes/PrivateRoute';
 
 const App = () => {
-
+  const [toggleBtn, setToggleBtn] = useState(false)
   return (
   <TodoProvider>
     <Global/>

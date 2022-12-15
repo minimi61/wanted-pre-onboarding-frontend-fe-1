@@ -5,7 +5,7 @@ import { api,token } from '../api/apis'
 
 const Login = () => {
   const navigate = useNavigate();
-  if(token) navigate('/todos')
+  if(token) navigate('/todo')
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
   
@@ -32,7 +32,7 @@ const Login = () => {
         if (res.status >= 200) {
           if (res.data.access_token) {
             localStorage.setItem('token', res.data.access_token)
-            navigate('/todo')
+            window.location.href = '/todo';
           }
         }
       }

@@ -5,12 +5,7 @@ const TodoContext = createContext();
 
 export const TodoProvider = ({ children }) => {
 
-  const [todoList, setTodoList] = useState([{
-    id: 0,
-    todo: '과제 제출하기',
-    isCompleted: false,
-    userId : 0
-  }])
+  const [todoList, setTodoList] = useState([])
   
   const addTodoItem = (newItem) => {
     setTodoList([...todoList, { id: newItem.id, todo: newItem.todo, isCompleted: newItem.isCompleted, userId: newItem.userId }])
