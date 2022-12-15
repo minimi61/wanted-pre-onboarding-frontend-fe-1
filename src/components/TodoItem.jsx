@@ -4,29 +4,23 @@ import { useTodoContext } from '../hooks/TodoContext'
 import instance from '../api/apis'
 
 const TodoItem = ({ todo, idx }) => {
-  const { delTodoItem,updateTodoItem,setTodoList } = useTodoContext();
+  const { delTodoItem,updateTodoItem } = useTodoContext();
   const [openInput, setOpenInput] = useState(false);
   const [inputContent, setInputContent] = useState('')
-  // console.log(todo)
   const onChangeText = (e) => {
     setInputContent(e.target.value)
   }
   const clickUpdate = () => {
     setOpenInput(!openInput)
   }
-  // const data = {
-  //   id: idx,
-  //   text: inputContent,
-  //   isCompleted: false,
-  //   userId: idx
-  // }
+
 
   const updateTask = async() => {
     if (inputContent==='') { setOpenInput(!openInput) }
     if (inputContent) {
       await instance.put(`todos/${idx}`,{todo:inputContent, isCompleted:todo.isCompleted})
       .then(res=> updateTodoItem(res.data))
-      // updateTodoItem(data)
+
       setOpenInput(false)
     }
   }
@@ -34,6 +28,7 @@ const TodoItem = ({ todo, idx }) => {
     await instance.delete(`todos/${idx}`)
     delTodoItem(idx)
   }
+  
   return (
     <TodoUl>
       {openInput ? 

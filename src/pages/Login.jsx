@@ -1,11 +1,11 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { api } from '../api/apis'
+import { api,token } from '../api/apis'
 
 const Login = () => {
   const navigate = useNavigate();
-
+  if(token) navigate('/todos')
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
   

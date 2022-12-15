@@ -6,13 +6,15 @@ export const api = axios.create({
   baseURL: baseURL
 })
 
-const token = localStorage.getItem('token')
+export const token = localStorage.getItem('token')
+
+export const isLogin = () => !!localStorage.getItem('token');
+
 
 const instance = axios.create({
   baseURL,
   headers: {
     Authorization: `Bearer ${token}`,
-    // Content-Type: application/json
   }
 });
 

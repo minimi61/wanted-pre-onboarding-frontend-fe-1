@@ -1,14 +1,10 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import TodoItem from '../components/TodoItem'
 import { useTodoContext } from '../hooks/TodoContext'
 import instance from '../api/apis'
-import { baseURL } from '../api/apis'
 
 const TodoMain = () => {
-  const [todos, setTodos] = useState([]);
-
   const { todoList, addTodoItem, todoListLength,setTodoList } = useTodoContext();
   useEffect(() => {
     try {
@@ -23,7 +19,6 @@ const TodoMain = () => {
   }, [])
   
   const [todoTask, setTodoTask] = useState('')
-  console.log(todoTask)
   const onchangeTodo = (e) => {
     setTodoTask(e.target.value)
   }
@@ -32,13 +27,12 @@ const TodoMain = () => {
     e.preventDefault();
     if (!todoTask) return
     if(todoListLength>=15) return alert('15개 이하로 작성해주세요')
-    // addTodoItem(todoTask)
-    // setTodos((prev)=>[...prev,])
+
     instance.post(`todos`, { todo: todoTask })
                 .then(res=> addTodoItem(res.data))
     setTodoTask('')
   }
-  console.log(todoList)
+
   return (
     <form onSubmit={handleOnSubmit}>
       <TodoContainer>
