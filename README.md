@@ -13,3 +13,6 @@
 
 ## CRUD 및 redirect 구현
 ![wanted-test-2](https://user-images.githubusercontent.com/85866328/207880705-09c85949-8184-49a6-af10-00e8b4dbe9bd.gif)
+
+## 배포사이트
+https://wanted-pre-on.netlify.app/
