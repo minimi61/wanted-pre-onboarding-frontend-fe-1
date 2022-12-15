@@ -1,12 +1,46 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { api } from '../api/apis'
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const BtnClick = () => {
-    alert('클릭했다')
+  const [email, setEmail] = useState('')
+  const [pw, setPw] = useState('')
+  
+   //오류메시지 
+  const [userEmailError, setUserEmailError] = useState(false);
+  const [pwError, setPwError] = useState(false);
+  
+ //이메일
+ const onChangeEmail = (e) => {
+  setEmail(e.target.value)
+  !email.includes('@') ? setUserEmailError(true) : setUserEmailError(false)
+  }
+  //비밀번호
+  const onChangePw = (e) => {
+    setPw(e.target.value)
+    e.target.value.length < 8 ? setPwError(true) : setPwError(false)
+  }
+
+  const BtnClick = async(e) => {
+    e.preventDefault()
+    if (email && pw && !userEmailError && !pwError) {
+      try {
+        const res = await api.post(`/auth/signin`, { email: email, password: pw })
+        if (res.status >= 200) {
+          if (res.data.access_token) {
+            localStorage.setItem('token', res.data.access_token)
+            navigate('/todo')
+          }
+        }
+      }
+      catch (error) {
+        console.log(error)
+        // if(error)alert('정보를 확인해주세요')
+      }
+    }
   }
 
   return (
@@ -14,13 +48,21 @@ const Login = () => {
       <LoginTitle>LOGIN</LoginTitle>
       <LoginContent>
         <LoginBox>
-          <IdTitle>ID</IdTitle>
-          <IdInput type="text"/>
+        <IdTitle>EMAIL</IdTitle>
+          <IdInput onChange={onChangeEmail} type="text" />
         </LoginBox>
-        <LoginBox>
-          <IdTitle>PW</IdTitle>
-          <IdInput type="password"/>
+        {userEmailError ? (<ErrorMessage>
+            이메일 형식으로 작성해주세요
+          </ErrorMessage>) : (null)
+          }
+      <LoginBox>
+        <IdTitle >PW</IdTitle>
+        <IdInput   onChange={onChangePw} type="password"/>
         </LoginBox>
+        {pwError ? (<ErrorMessage>
+            8자 이상 입력해주세요
+          </ErrorMessage>) : (null)
+          }
       </LoginContent>
       <LoginBtn onClick={BtnClick}>로그인하기</LoginBtn>
       <GotoSignup onClick={()=>{ navigate('/signUp')}}>회원가입하시겠습니까?</GotoSignup>
@@ -52,7 +94,8 @@ const LoginBox = styled.div`
 
 const IdTitle = styled.div`
   margin-right: 30px;
-  width: 30px;
+  margin-left: -30px;
+  width: 80px;
 `
 const IdInput = styled.input`
   width: 180px;
@@ -75,6 +118,12 @@ const LoginBtn = styled.button`
 const GotoSignup = styled.p`
   margin-left: 250px;
   cursor: pointer;
+`
+
+const ErrorMessage = styled.div`
+  margin-top: 10px;
+  margin-left: 10px;
+  color:  ${(props) => props.theme.color};
 `
 
 export default Login
