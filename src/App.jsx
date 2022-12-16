@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Route, Routes  } from 'react-router-dom'
+import { Route, Routes, Navigate  } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
 import Global from './styles/Global';
@@ -9,6 +9,7 @@ import TodoMain from './pages/TodoMain';
 import { TodoProvider } from './hooks/TodoContext';
 import PrivateRoute from './Routes/PrivateRoute';
 import Header from './components/Header';
+import { isLogin } from './api/apis';
 
 const App = () => {
   const [toggleBtn, setToggleBtn] = useState(false)
@@ -24,11 +25,12 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Login/>} />
           <Route path='/signUp' element={<SingUp />} />
-          <Route path='/todo' element={<TodoMain />} />
-
-          <Route path='/todo' element={<PrivateRoute />}>
+          {/* 리다이렉트 방법1 - elment내 조건 */}
+          <Route path='/todo' element={isLogin() ? <TodoMain /> : <Navigate to='/' />} />
+         {/* 리다이렉트 방법2 - PrivateRoute 사용*/}
+          {/* <Route path='/todo' element={<PrivateRoute />}>
             <Route path="/todo" element={<TodoMain />} />
-          </Route>
+          </Route> */}
         </Routes>
         </BgBox>
       </BgContainer>

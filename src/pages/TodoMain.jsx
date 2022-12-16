@@ -6,6 +6,8 @@ import instance from '../api/apis'
 
 const TodoMain = () => {
   const { todoList, addTodoItem, todoListLength,setTodoList } = useTodoContext();
+ 
+  //첫 데이터 받아오기
   useEffect(() => {
     try {
       instance.get(`todos`)

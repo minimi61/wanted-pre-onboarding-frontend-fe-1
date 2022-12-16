@@ -18,9 +18,7 @@ const Header = ({toggleBtn,setToggleBtn}) => {
       <div className={`toggle-container ${toggleBtn ? "toggle--checked" : null}`}/>
       <div className={`toggle-circle ${toggleBtn ? "toggle--checked" : null}`}/>
     </ToggleContainer>
-    {/* Desc 컴포넌트를 활용*/}
-    {/* Toggle Switch가 ON인 상태일 경우에 Desc 컴포넌트 내부의 텍스트를 'Toggle Switch ON'으로, 그렇지 않은 경우 'Toggle Switch OFF'. 조건부 렌더링을 활용. */}
-
+  
   </>
   )
 }
@@ -36,6 +34,7 @@ const ToggleContainer = styled.div`
     height: 24px;
     border-radius: 30px;
     background-color: rgb(233,233,234);}
+    
     //.toggle--checked 클래스가 활성화 되었을 경우의 CSS를 구현
   > .toggle--checked {
     background-color: #878e8a;
@@ -58,9 +57,5 @@ const ToggleContainer = styled.div`
   }
 `;
 
-const Desc = styled.div`
-  //설명 부분의 CSS를 구현
-  text-align: center;
-  margin: 20px;
-`;
+
 export default Header
