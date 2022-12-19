@@ -115,14 +115,14 @@ const PrevBtn = styled.button`
 
 
 const SignUpTitle = styled.div`
-   margin-top: 100px;
-   margin-left: 120px;
+   margin-top: 80px;
+   margin-left: 35%;
    color: ${(props) => props.theme.color};
    font-size: 3rem;
 `
 const SignUpContent = styled.div`
-  margin-top: 130px;
-  margin-left: 150px;
+  margin-top: 100px;
+  margin-left: 40%;
 `
 
 const SignUpBox = styled.div`
@@ -154,9 +154,9 @@ const ErrorMessage = styled.div`
 const SignUpBtn = styled.button`
   width: 200px;
   height: 50px;
-  margin-top: 130px;
-  margin-left: 120px;
-  margin-bottom: 100px;
+  margin-top: 30px;
+  margin-left: 28%;
+  margin-bottom: 10px;
   border-radius: 50px;
   cursor: pointer;
   font-weight: 600;
@@ -166,9 +166,9 @@ const SignUpBtn = styled.button`
 const NoSignUpBtn = styled.button`
   width: 200px;
   height: 50px;
-  margin-top: 150px;
-  margin-left: 120px;
-  margin-bottom: 100px;
+  margin-top: 30px;
+  margin-left: 28%;
+  margin-bottom: 10px;
   border-radius: 50px;
   font-weight: 600;
   color:  ${(props) => props.theme.BgColor};
