@@ -74,19 +74,19 @@ const LoginContainer = styled.form`
  color: ${(props) => props.theme.color};
 `
 const LoginTitle = styled.div`
-   margin-top: 300px;
-   margin-left: 270px;
+   margin-top: 200px;
+   margin-left: 150px;
    color: ${(props) => props.theme.color};
    font-size: 3rem;
 `
 const LoginContent = styled.div`
   margin-top: 200px;
-  margin-left: 270px;
+  margin-left: 150px;
 
 `
 
 const LoginBox = styled.div`
-  margin-top: 70px;
+  margin-top: 50px;
   margin-left: -70px;
   display: flex;
   font-size: 1.5rem;
@@ -108,15 +108,16 @@ const IdInput = styled.input`
 const LoginBtn = styled.button`
   width: 200px;
   height: 50px;
-  margin-top: 100px;
-  margin-left: 230px;
+  margin-top: 60px;
+  margin-left: 120px;
   border-radius: 50px;
   cursor: pointer;
   font-weight: 600;
   color:  ${(props) => props.theme.BgColor};
 `
 const GotoSignup = styled.p`
-  margin-left: 250px;
+  margin-left: 130px;
+  margin-bottom: 100px;
   cursor: pointer;
 `
 

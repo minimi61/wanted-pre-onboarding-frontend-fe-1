@@ -21,7 +21,6 @@ const App = () => {
         <BgContainer>
         <Header toggleBtn={toggleBtn} setToggleBtn={setToggleBtn}/>
 
-        <BgBox>
         <Routes>
           <Route path='/' element={<Login/>} />
           <Route path='/signUp' element={<SingUp />} />
@@ -32,25 +31,25 @@ const App = () => {
             <Route path="/todo" element={<TodoMain />} />
           </Route> */}
         </Routes>
-        </BgBox>
       </BgContainer>
    </ThemeProvider>
  </TodoProvider>
     );
 }
 const BgContainer = styled.div`
-    display: flex;
-    justify-content: center;
+  /* position: relative; */
+  max-width: 480px;
+  min-width: 320px;
+  height: 100vh;
+  /* overflow-y: scroll; */
+  margin: 0 auto;
+  background-color: ${(props) => props.theme.bgColor};
+  border-radius: 50px;
+  border: thick double #5c5a5a;
+    /* display: flex;
+    justify-content: center; */
     
 ` 
 
-const BgBox = styled.div`
-    width: 700px;
-    height: 100vh;
-    display: flex;
-    border-radius: 50px;
-    border: thick double #5c5a5a;
-    background-color: ${(props) => props.theme.bgColor};
-   
-`
+
 export default App;

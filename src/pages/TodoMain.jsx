@@ -59,14 +59,14 @@ const TodoContainer = styled.div`
 
 const TodoTitle = styled.div`
    margin-top: 200px;
-   margin-left: 270px;
+   margin-left: 40%;
    color: ${(props) => props.theme.color};
    font-size: 3rem;
 `
 const TodoInput = styled.input`
-  width: 300px;
+  width: 50%;
   margin-top: 100px;
-  margin-left: 150px;
+  margin-left: 20%;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid ${(props) => props.theme.color};
@@ -84,8 +84,9 @@ const AddBtn = styled.button`
    cursor: pointer;
 `
 const ListPadding = styled.div`
+  width: 80%;
   margin-top: 100px;
-  margin-left: 130px;
+  margin-left: 50px;
   color: ${(props) => props.theme.color};
 `
 export default TodoMain
