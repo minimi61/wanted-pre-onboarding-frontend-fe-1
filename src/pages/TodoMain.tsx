@@ -4,35 +4,36 @@ import styled from 'styled-components'
 import TodoItem from '../components/TodoItem'
 import { useTodoContext } from '../hooks/TodoContext'
 import instance from '../api/apis'
+import {UserContextType } from '../hooks/types'
 
 const TodoMain = () => {
-  const { todoList, addTodoItem, todoListLength,setTodoList } = useTodoContext();
- 
+  const { todoList: any, addTodoItem:any, todoListLength :any, setTodoList:any } = useTodoContext();
+
   //첫 데이터 받아오기
   useEffect(() => {
     try {
       instance.get(`todos`)
         .then((res) => setTodoList(res.data))
     }
-    catch (err){
+    catch (err) {
       if (err.response.data.statusCode === 401) {
         alert("잘못된 접근입니다.");
       }
     }
   }, [])
-  
+
   const [todoTask, setTodoTask] = useState('')
   const onchangeTodo = (e) => {
     setTodoTask(e.target.value)
   }
-  
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (!todoTask) return
-    if(todoListLength>=15) return alert('15개 이하로 작성해주세요')
+    if (todoListLength >= 15) return alert('15개 이하로 작성해주세요')
 
     instance.post(`todos`, { todo: todoTask })
-                .then(res=> addTodoItem(res.data))
+      .then(res => addTodoItem(res.data))
     setTodoTask('')
   }
 
