@@ -1,4 +1,5 @@
-import React,{useState} from 'react';
+import React = require('react')
+import { useState } from 'react';
 import { Route, Routes, Navigate  } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
@@ -7,7 +8,6 @@ import SingUp from './pages/SingUp';
 import Login from './pages/Login';
 import TodoMain from './pages/TodoMain';
 import { TodoProvider } from './hooks/TodoContext';
-import PrivateRoute from './Routes/PrivateRoute';
 import Header from './components/Header';
 import { isLogin } from './api/apis';
 
@@ -17,7 +17,6 @@ const App = () => {
   <TodoProvider>
       <Global />
     <ThemeProvider theme={toggleBtn ? { color: '#202020', bgColor: '#ffff' }:{ color: '#ffffff', bgColor: '#202020' }}>
-    {/* <ThemeProvider theme={{ color: '#202020', bgColor: '#fff' }}> */}
         <BgContainer>
         <Header toggleBtn={toggleBtn} setToggleBtn={setToggleBtn}/>
 
@@ -46,9 +45,7 @@ const BgContainer = styled.div`
   background-color: ${(props) => props.theme.bgColor};
   border-radius: 50px;
   border: thick double #5c5a5a;
-    /* display: flex;
-    justify-content: center; */
-    
+
 ` 
 
 

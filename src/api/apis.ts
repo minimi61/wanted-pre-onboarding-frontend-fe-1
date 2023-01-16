@@ -1,5 +1,9 @@
 import axios from "axios";
 
+type apiType =  {
+  baseURL: string
+}
+
 export const baseURL = ' https://pre-onboarding-selection-task.shop/'
 
 export const api = axios.create({

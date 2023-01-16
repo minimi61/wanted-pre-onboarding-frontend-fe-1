@@ -1,4 +1,4 @@
-import React from 'react'
+import React = require('react')
 import styled from 'styled-components';
 
 const Header = ({toggleBtn,setToggleBtn}) => {

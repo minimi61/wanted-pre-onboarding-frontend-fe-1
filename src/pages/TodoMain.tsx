@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React = require('react')
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import TodoItem from '../components/TodoItem'
 import { useTodoContext } from '../hooks/TodoContext'
