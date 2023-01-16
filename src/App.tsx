@@ -1,4 +1,4 @@
-import React = require('react')
+import * as React from 'react';
 import { useState } from 'react';
 import { Route, Routes, Navigate  } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components';

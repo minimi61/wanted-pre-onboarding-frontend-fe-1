@@ -1,14 +1,14 @@
-import React, { createContext, useContext, useState } from 'react';
+import * as React from 'react';
+import { createContext, useContext, useState } from 'react';
 import { State, UserContextType, defaultValue, TodosState } from './types';
 
 const TodoContext = createContext<UserContextType | null>(null);
 
 export const TodoProvider = ({ children }: { children: React.ReactNode }) => {
-
   const [todoList, setTodoList] = useState<State[]>([defaultValue])
 
   const addTodoItem = (newItem: State) => {
-    setTodoList([...todoList, id: newItem.id, todo: newItem.todo, isCompleted: newItem.isCompleted, userId: newItem.userId])
+    setTodoList([...todoList, newItem])
   }
 
   const delTodoItem = (id: string) => {
@@ -29,9 +29,10 @@ export const TodoProvider = ({ children }: { children: React.ReactNode }) => {
     updateTodoItem,
     todoListLength
   }
-  return (<TodoContext.Provider value={ {contextValue} }>
-    { children }
-    < /TodoContext.Provider>)
+  return <TodoContext.Provider value={contextValue}>
+    {children}
+  </TodoContext.Provider>
 }
+
 
 export const useTodoContext = () => useContext(TodoContext);

@@ -1,4 +1,4 @@
-import React = require('react')
+import * as React from 'react';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -17,21 +17,21 @@ const SingUp = () => {
   const [pwCheckError, setPwCheckError] = useState(false)
   
   //이메일
-  const onChangeEmail = (e) => {
+  const onChangeEmail = (e:React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
     !email.includes('@') ? setUserEmailError(true) : setUserEmailError(false)
   }
   //비밀번호
-  const onChangePw = (e) => {
+  const onChangePw = (e:React.ChangeEvent<HTMLInputElement>) => {
     setPw(e.target.value)
     e.target.value.length < 8 ? setPwError(true) : setPwError(false)
   }
 
-  const onChangePwCheck = (e) => {
+  const onChangePwCheck = (e:React.ChangeEvent<HTMLInputElement>) => {
     setPwCheck(e.target.value)
     pw !== e.target.value? setPwCheckError(true) : setPwCheckError(false)
   }
-  const BtnClick = async(e) => {
+  const BtnClick = async(e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (email && pw && pwCheck && !userEmailError && !pwError && !pwCheckError) {
       try {

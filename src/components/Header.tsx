@@ -1,7 +1,7 @@
-import React = require('react')
+import * as React from 'react';
 import styled from 'styled-components';
 
-const Header = ({toggleBtn,setToggleBtn}) => {
+const Header = ({toggleBtn,setToggleBtn}:{toggleBtn:boolean, setToggleBtn:React.Dispatch<React.SetStateAction<boolean>>}) => {
 
   const toggleHandler = () => {
     // isOn의 상태를 변경하는 메소드를 구현

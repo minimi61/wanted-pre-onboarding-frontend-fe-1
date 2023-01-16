@@ -1,12 +1,9 @@
-import axios from "axios";
+import axios,{AxiosInstance} from "axios";
 
-type apiType =  {
-  baseURL: string
-}
 
-export const baseURL = ' https://pre-onboarding-selection-task.shop/'
+export const baseURL:string = ' https://pre-onboarding-selection-task.shop/'
 
-export const api = axios.create({
+export const api:AxiosInstance = axios.create({
   baseURL: baseURL
 })
 

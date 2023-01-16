@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import * as React from 'react';
+import { useState } from 'react'
 import styled from 'styled-components'
 import { useTodoContext } from '../hooks/TodoContext'
 import instance from '../api/apis'
+import { State } from '../hooks/types';
 
-const TodoItem = ({ todo, idx }) => {
-  const { delTodoItem,updateTodoItem } = useTodoContext();
+const TodoItem = ({ todo, idx }:{todo:State, idx: string}) => {
+  const useContext = useTodoContext();
   const [openInput, setOpenInput] = useState(false);
   const [inputContent, setInputContent] = useState('')
-  const onChangeText = (e) => {
+  const onChangeText = (e:React.ChangeEvent<HTMLInputElement>) => {
     setInputContent(e.target.value)
   }
   const clickUpdate = () => {
@@ -19,14 +21,14 @@ const TodoItem = ({ todo, idx }) => {
     if (inputContent==='') { setOpenInput(!openInput) }
     if (inputContent) {
       await instance.put(`todos/${idx}`,{todo:inputContent, isCompleted:todo.isCompleted})
-      .then(res=> updateTodoItem(res.data))
+      .then(res=> useContext?.updateTodoItem(res.data))
 
       setOpenInput(false)
     }
   }
   const deleteTask = async() => {
     await instance.delete(`todos/${idx}`)
-    delTodoItem(idx)
+    useContext?.delTodoItem(idx)
   }
   
   return (

@@ -1,4 +1,4 @@
-import React = require('react')
+import * as React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { isLogin } from '../api/apis';
 

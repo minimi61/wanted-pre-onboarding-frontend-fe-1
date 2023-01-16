@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react"
+import { Dispatch } from "react"
 
 export type State = {
     id: string,
@@ -14,16 +14,12 @@ export const defaultValue: State = {
     isCompleted: false,
     userId: 0,
 }
-//export type TodosContextState = { todoList: [],
-//setTodoList: ()=>void
-// addTodoItem: () => {},
-//  delTodoItem: () => {}, //updateTodoItem: () => {}};
 
 export type UserContextType = {
     todoList: State[],
-    // setContextState: ()=>void
     setTodoList: Dispatch<React.SetStateAction<State[]>>,
     addTodoItem: (newItem: State) => void,
-    delTodoItem: (id: string) => void, updateTodoItem: (item: State) => void,
-    todoListLength: number
+    delTodoItem: (id: string) => void,
+    updateTodoItem: (item: State) => void,
+    todoListLength: number | undefined
 }
