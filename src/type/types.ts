@@ -4,7 +4,7 @@ export type State = {
     id: string,
     todo: string,
     isCompleted: boolean,
-    userId: number,
+    userId?: number|undefined,
 }
 export type TodosState = State[];
 

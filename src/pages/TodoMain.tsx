@@ -2,24 +2,47 @@ import * as React from 'react';
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import TodoItem from '../components/TodoItem'
-import { useTodoContext } from '../hooks/TodoContext'
+import { useTodoContext } from '../api/TodoContext'
 import instance from '../api/apis'
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query'
+import { addTodo, fetchTodos } from '../api/RQapi';
+import { TodosState } from '../type/types';
+import { AxiosError } from 'axios';
 
 const TodoMain = () => {
-  const useContext = useTodoContext()
+  ///ContextAPI
+  // const useContext = useTodoContext()
+  const queryClient = useQueryClient()
 
+  //RQ Queries
+  const {data,refetch} = useQuery(['todos'],fetchTodos)
+  console.log(data)
+
+  //RQ Mutations
+  const mutation = useMutation(addTodo, {
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries(['todos'])
+    },
+  })
+  
+  ///contextAPI버전
   //첫 데이터 받아오기
-  useEffect(() => {
-    try {
-      instance.get(`todos`)
-        .then((res)=> useContext?.setTodoList(res.data))
-    }
-    catch (err:any) {
-      if (err.response.data.statusCode === 401) {
-        alert("잘못된 접근입니다.");
-      }
-    }
-  }, [])
+  // useEffect(() => {
+  //   try {
+  //     instance.get(`todos`)
+  //       .then((res)=> useContext?.setTodoList(res.data))
+  //   }
+  //   catch (err:any) {
+  //     if (err.response.data.statusCode === 401) {
+  //       alert("잘못된 접근입니다.");
+  //     }
+  //   }
+  // }, [])
 
   const [todoTask, setTodoTask] = useState('')
   const onchangeTodo = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -31,8 +54,12 @@ const TodoMain = () => {
     if (!todoTask) return
     // if (useContext?.todoListLength >= 15) return alert('15개 이하로 작성해주세요')
 
-    instance.post(`todos`, { todo: todoTask })
-      .then(res => useContext?.addTodoItem(res.data))
+    ///contextAPI버전
+    // instance.post(`todos`, { todo: todoTask })
+    //   .then(res => useContext?.addTodoItem(res.data))
+    
+    //RQ버전
+    mutation.mutate(todoTask)
     setTodoTask('')
   }
 
@@ -47,7 +74,7 @@ const TodoMain = () => {
         />
         <AddBtn type='submit'>➕</AddBtn>
         <ListPadding>
-          {useContext?.todoList.map((todo, index) => <TodoItem todo={todo} key={index} idx={todo.id} />)}
+          {data?.map((todo, index) => <TodoItem todo={todo} key={index} idx={todo.id} />)}
         </ListPadding>
       </TodoContainer>
     </form>

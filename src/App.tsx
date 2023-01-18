@@ -7,14 +7,18 @@ import Global from './styles/Global';
 import SingUp from './pages/SingUp';
 import Login from './pages/Login';
 import TodoMain from './pages/TodoMain';
-import { TodoProvider } from './hooks/TodoContext';
+// import { TodoProvider } from './hooks/TodoContext';
 import Header from './components/Header';
 import { isLogin } from './api/apis';
+import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 
 const App = () => {
+  const queryClient = new QueryClient()
   const [toggleBtn, setToggleBtn] = useState(false)
   return (
-  <TodoProvider>
+  // <TodoProvider>
+    <QueryClientProvider client={queryClient}>
       <Global />
     <ThemeProvider theme={toggleBtn ? { color: '#202020', bgColor: '#ffff' }:{ color: '#ffffff', bgColor: '#202020' }}>
         <BgContainer>
@@ -31,8 +35,10 @@ const App = () => {
           </Route> */}
         </Routes>
       </BgContainer>
-   </ThemeProvider>
- </TodoProvider>
+      </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} position='bottom-right' />
+      </QueryClientProvider>
+//  </TodoProvider>
     );
 }
 const BgContainer = styled.div`
