@@ -11,23 +11,21 @@ const Login = () => {
   const [pw, setPw] = useState('')
   
    //오류메시지 
-  const [userEmailError, setUserEmailError] = useState(false);
-  const [pwError, setPwError] = useState(false);
-  
+  const isEmailError = !email.includes('@')
+  const isPwError = pw.length<8
+
  //이메일
  const onChangeEmail = (e:React.ChangeEvent<HTMLInputElement>) => {
   setEmail(e.target.value)
-  !email.includes('@') ? setUserEmailError(true) : setUserEmailError(false)
   }
   //비밀번호
   const onChangePw = (e:React.ChangeEvent<HTMLInputElement>) => {
     setPw(e.target.value)
-    e.target.value.length < 8 ? setPwError(true) : setPwError(false)
   }
 
   const BtnClick = async(e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    if (email && pw && !userEmailError && !pwError) {
+    if (email && pw && !isEmailError && !isPwError) {
       try {
         const res = await api.post(`/auth/signin`, { email: email, password: pw })
         if (res.status >= 200) {
@@ -52,7 +50,7 @@ const Login = () => {
         <IdTitle>EMAIL</IdTitle>
           <IdInput onChange={onChangeEmail} type="text" />
         </LoginBox>
-        {userEmailError ? (<ErrorMessage>
+        {isEmailError ? (<ErrorMessage>
             이메일 형식으로 작성해주세요
           </ErrorMessage>) : (null)
           }
@@ -60,7 +58,7 @@ const Login = () => {
         <IdTitle >PW</IdTitle>
         <IdInput   onChange={onChangePw} type="password"/>
         </LoginBox>
-        {pwError ? (<ErrorMessage>
+        {isPwError ? (<ErrorMessage>
             8자 이상 입력해주세요
           </ErrorMessage>) : (null)
           }

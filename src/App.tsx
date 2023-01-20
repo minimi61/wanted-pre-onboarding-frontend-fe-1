@@ -10,7 +10,7 @@ import TodoMain from './pages/TodoMain';
 // import { TodoProvider } from './hooks/TodoContext';
 import Header from './components/Header';
 import { isLogin } from './api/apis';
-import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 
 const App = () => {

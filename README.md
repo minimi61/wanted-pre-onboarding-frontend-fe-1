@@ -2,7 +2,7 @@
 - 원티드 프리온보딩  프론트엔드 선발과제
 
 ## 🍎 설치
-- npm i typescript
+- npm install --save typescript @types/node @types/react @types/react-dom @types/jest
 - npm i --save-dev @types/styled-components
 - npm install react-router-dom @types/react-router-dom
 - npm install axios
