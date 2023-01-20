@@ -6,7 +6,8 @@ import { api,token } from '../api/apis'
 
 const Login = () => {
   const navigate = useNavigate();
-  if(token) navigate('/todo')
+  if (token) navigate('/todo')
+  
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
   

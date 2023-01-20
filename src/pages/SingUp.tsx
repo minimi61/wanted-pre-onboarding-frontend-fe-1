@@ -6,34 +6,32 @@ import { api } from '../api/apis'
 
 const SingUp = () => {
   const navigate = useNavigate();
+  
   //이메일,비밀번호확인
   const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
   const [pwCheck, setPwCheck] = useState('')
 
   //오류메시지 
-  const [userEmailError, setUserEmailError] = useState(false);
-  const [pwError, setPwError] = useState(false);
-  const [pwCheckError, setPwCheckError] = useState(false)
-  
+  const isEmailError = !email.includes('@')
+  const isPwError = pw.length<8
+  const pwCheckError = pw !== pwCheck
+
   //이메일
   const onChangeEmail = (e:React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
-    !email.includes('@') ? setUserEmailError(true) : setUserEmailError(false)
   }
   //비밀번호
   const onChangePw = (e:React.ChangeEvent<HTMLInputElement>) => {
     setPw(e.target.value)
-    e.target.value.length < 8 ? setPwError(true) : setPwError(false)
   }
 
   const onChangePwCheck = (e:React.ChangeEvent<HTMLInputElement>) => {
     setPwCheck(e.target.value)
-    pw !== e.target.value? setPwCheckError(true) : setPwCheckError(false)
   }
   const BtnClick = async(e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    if (email && pw && pwCheck && !userEmailError && !pwError && !pwCheckError) {
+    if (email && pw && pwCheck && !isEmailError && !isPwError && !pwCheckError) {
       try {
         const res = await api.post(`/auth/signup`, { email: email, password: pw })
         if (res.status >= 200) {
@@ -54,7 +52,7 @@ const SingUp = () => {
         <IdTitle>EMAIL</IdTitle>
           <IdInput onChange={onChangeEmail} type="text" />
         </SignUpBox>
-        {userEmailError ? (<ErrorMessage>
+        {isEmailError ? (<ErrorMessage>
             이메일 형식으로 작성해주세요
           </ErrorMessage>) : (null)
           }
@@ -62,7 +60,7 @@ const SingUp = () => {
         <IdTitle >PW</IdTitle>
         <IdInput   onChange={onChangePw} type="password"/>
         </SignUpBox>
-        {pwError ? (<ErrorMessage>
+        {isPwError ? (<ErrorMessage>
             8자 이상 입력해주세요
           </ErrorMessage>) : (null)
           }
@@ -75,7 +73,7 @@ const SingUp = () => {
           </ErrorMessage>) : (null)
           }
     </SignUpContent>
-      {Boolean(email) && Boolean(pw) && Boolean(pwCheck) &&  !userEmailError && !pwError && !pwCheckError?
+      {Boolean(email) && Boolean(pw) && Boolean(pwCheck) &&  !isEmailError && !isPwError && !pwCheckError?
         <SignUpBtn onClick={BtnClick} disabled={false}>가입하기</SignUpBtn>
         :
         <NoSignUpBtn onClick={BtnClick} disabled={true}>가입하기</NoSignUpBtn>
