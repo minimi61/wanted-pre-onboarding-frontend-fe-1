@@ -30,7 +30,6 @@
 
 
 ## 📁폴더구조
-<<<<<<< HEAD
 ```
 📦src
  ┣ 📂api            //api와 통신하는 계층 폴더
@@ -61,10 +60,6 @@
  ┣ 📜reportWebVitals.js
  ┗ 📜setupTests.js
 ```
-=======
-![image](https://user-images.githubusercontent.com/85866328/214479814-60fd6400-e0ac-4b10-aa4d-a6d6f2d3ccee.png)
-
->>>>>>> 97316deb8310f630ed478d7541e51cf8a30c6cad
 
 ## ⚙️기술스택
 
