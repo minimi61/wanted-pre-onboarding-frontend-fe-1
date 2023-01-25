@@ -30,7 +30,36 @@
 
 
 ## 📁폴더구조
-
+```
+📦src
+ ┣ 📂api            //api와 통신하는 계층 폴더
+ ┃ ┣ 📜apiLogin.ts
+ ┃ ┣ 📜apis.ts
+ ┃ ┣ 📜apiSignUp.ts
+ ┃ ┗ 📜TodoContext.tsx
+ ┣ 📂contextAPI     //contextAPI 폴더
+ ┃ ┣ 📜contextType.ts
+ ┃ ┗ 📜TodoContext.tsx
+ ┣ 📂components     //페이지를 구성하는 폴더
+ ┃ ┣ 📂auth
+ ┃ ┃ ┣ 📜Login.tsx
+ ┃ ┃ ┗ 📜SingUp.tsx
+ ┃ ┣ 📂common
+ ┃ ┃ ┗ 📜Header.tsx
+ ┃ ┗ 📂main
+ ┃ ┃ ┣ 📜TodoItem.tsx
+ ┃ ┃ ┗ 📜TodoMain.tsx
+ ┣ 📂Routes         //로그인유무
+ ┃ ┗ 📜PrivateRoute.tsx
+ ┣ 📂styles         //전역 스타일 파일
+ ┃ ┗ 📜Global.tsx
+ ┣ 📂type           //타입선언 폴더
+ ┃ ┗ 📜types.ts
+ ┣ 📜App.tsx
+ ┣ 📜index.tsx
+ ┣ 📜reportWebVitals.js
+ ┗ 📜setupTests.js
+```
 
 ## ⚙️기술스택
 
