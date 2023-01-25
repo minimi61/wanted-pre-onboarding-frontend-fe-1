@@ -4,11 +4,11 @@ import { Route, Routes, Navigate  } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
 import Global from './styles/Global';
-import SingUp from './pages/SingUp';
-import Login from './pages/Login';
-import TodoMain from './pages/TodoMain';
+import SingUp from './components/auth/SingUp';
+import Login from './components/auth/Login';
+import TodoMain from './components/main/TodoMain';
 // import { TodoProvider } from './hooks/TodoContext';
-import Header from './components/Header';
+import Header from './components/common/Header';
 import { isLogin } from './api/apis';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools'

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { api,token } from '../api/apis'
+import { api,token } from '../../api/apis'
 
 const Login = () => {
   const navigate = useNavigate();

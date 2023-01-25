@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import TodoItem from '../components/TodoItem'
-import { useTodoContext } from '../api/TodoContext'
-import instance from '../api/apis'
+import TodoItem from './TodoItem'
+import { useTodoContext } from '../../api/TodoContext'
+import instance from '../../api/apis'
 import {
   useQuery,
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query'
-import { addTodo, fetchTodos } from '../api/RQapi';
-import { TodosState } from '../type/types';
+import { addTodo, fetchTodos } from '../../api/RQapi';
+import { TodosState } from '../../type/types';
 import { AxiosError } from 'axios';
 
 const TodoMain = () => {
