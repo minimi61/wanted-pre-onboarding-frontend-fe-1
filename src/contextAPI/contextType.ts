@@ -1,5 +1,5 @@
 import { Dispatch } from "react"
-import { State } from "./types"
+import { State } from "../type/types"
 
 export type UserContextType = {
   todoList: State[],
