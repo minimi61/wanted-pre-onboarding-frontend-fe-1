@@ -1,21 +1,18 @@
 # 🥝 wanted-pre-onboarding-frontend
 - 원티드 프리온보딩  프론트엔드 선발과제
-### [설치](#🍎설치)
-### [TodoList-보기](#todolist-기능소개상세기능설명)
-### [폴더구조](#폴더구조)
-### [기술스택](#⚙️기술스택)
+
+##### [폴더구조](#폴더구조)
+##### [기술스택](#⚙️기술스택)
 
 
 ## 🍎설치
------------------
 - npm install --save typescript @types/node @types/react @types/react-dom @types/jest
 - npm i --save-dev @types/styled-components
 - npm install react-router-dom @types/react-router-dom
 - npm install axios
 
 <details>
-<summary>## 👷TodoList 기능소개(#상세기능설명)</summary>
-----------------
+<summary>👷TodoList 기능소개</summary>
 
 ### 회원가입 및 로그인 구현
 ![wanted-test-1](https://user-images.githubusercontent.com/85866328/207896453-e7363a9f-b540-409e-b215-9459c8588c54.gif)
@@ -35,8 +32,7 @@
 </details>
 
 ## 📁폴더구조
----------------------
-📦src
+(`📦src
  ┣ 📂api            //api와 통신하는 계층 폴더
  ┃ ┣ 📜apiLogin.ts
  ┃ ┣ 📜apis.ts
@@ -64,10 +60,8 @@
  ┣ 📜index.tsx
  ┣ 📜reportWebVitals.js
  ┗ 📜setupTests.js
-
-<details>
-<summary>## ⚙️기술스택</summary>
-------------------
+`)
+## ⚙️기술스택
 
 #### Typescript
 - 정적타입을 지원하므로 코드 안정성을 위하여 사용
@@ -80,10 +74,10 @@
 
 #### contextAPI
 - 과제 초기에 props drilling 문제를 해결하기 위해 사용하였으나 React-Query로 리팩토링
-</details>
+
 
 ## 리팩토링
-------------------------
+
 - contextAPI는 children을 다 리렌더링 시켜주는 문제가 있는데 redux나 redux-toolkit말고 다른 좋은 툴이 있을까?
 -> [React-Query사용](https://github.com/minimi61/wanted-pre-onboarding-frontend-fe-1/commit/63a1d71050504aa180278de6c6155407eb044b3a#diff-780e32d9169d98349bce8353cfce4ed953b7db730df4b0a7d096208bb2a1bb6d), 보일러플레이트가 적고, 캐싱을 통해 네트워크 요청량도 줄일 수 있었다
 
