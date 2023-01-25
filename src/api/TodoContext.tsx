@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createContext, useContext, useState } from 'react';
-import { State, UserContextType, defaultValue } from '../type/types';
+import { State, defaultValue } from '../type/types';
+import { UserContextType } from '../type/contextType';
 
 const TodoContext = createContext<UserContextType | null>(null);
 

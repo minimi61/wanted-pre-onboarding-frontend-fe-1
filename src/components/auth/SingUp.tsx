@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { api } from '../api/apis'
+import { api } from '../../api/apis';
 
 const SingUp = () => {
   const navigate = useNavigate();

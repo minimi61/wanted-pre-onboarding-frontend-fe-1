@@ -20,7 +20,6 @@ const TodoMain = () => {
 
   //RQ Queries
   const {data,refetch} = useQuery(['todos'],fetchTodos)
-  console.log(data)
 
   //RQ Mutations
   const mutation = useMutation(addTodo, {
