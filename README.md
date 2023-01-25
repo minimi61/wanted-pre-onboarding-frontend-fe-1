@@ -11,9 +11,7 @@
 - npm install react-router-dom @types/react-router-dom
 - npm install axios
 
-<details>
-<summary>👷TodoList 기능소개</summary>
-
+## 👷TodoList 기능소개
 ### 회원가입 및 로그인 구현
 ![wanted-test-1](https://user-images.githubusercontent.com/85866328/207896453-e7363a9f-b540-409e-b215-9459c8588c54.gif)
 - 회원가입 창 구현(emali은 @포함, password는 8자리 이상되는 조건)
@@ -29,38 +27,11 @@
 ![wanted-test-3](https://user-images.githubusercontent.com/85866328/207896537-177caee3-d03f-4a5b-84ac-c179dbb41990.gif)
 - 과제 요구사항에 맞게 localStorage로 토큰을 저장
 - 토큰이 있다면 로그인넘어가고 바로 Todo 메인 페이지로 이동
-</details>
+
 
 ## 📁폴더구조
-(`📦src
- ┣ 📂api            //api와 통신하는 계층 폴더
- ┃ ┣ 📜apiLogin.ts
- ┃ ┣ 📜apis.ts
- ┃ ┣ 📜apiSignUp.ts
- ┃ ┗ 📜TodoContext.tsx
- ┣ 📂contextAPI     //contextAPI 폴더
- ┃ ┣ 📜contextType.ts
- ┃ ┗ 📜TodoContext.tsx
- ┣ 📂components     //페이지를 구성하는 폴더
- ┃ ┣ 📂auth
- ┃ ┃ ┣ 📜Login.tsx
- ┃ ┃ ┗ 📜SingUp.tsx
- ┃ ┣ 📂common
- ┃ ┃ ┗ 📜Header.tsx
- ┃ ┗ 📂main
- ┃ ┃ ┣ 📜TodoItem.tsx
- ┃ ┃ ┗ 📜TodoMain.tsx
- ┣ 📂Routes         //로그인유무
- ┃ ┗ 📜PrivateRoute.tsx
- ┣ 📂styles         //전역 스타일 파일
- ┃ ┗ 📜Global.tsx
- ┣ 📂type           //타입선언 폴더
- ┃ ┗ 📜types.ts
- ┣ 📜App.tsx
- ┣ 📜index.tsx
- ┣ 📜reportWebVitals.js
- ┗ 📜setupTests.js
-`)
+
+
 ## ⚙️기술스택
 
 #### Typescript
