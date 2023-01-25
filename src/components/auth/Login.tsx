@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { api,token } from '../../api/apis'
+import { apiLogin } from '../../api/apiLogin';
+import { token } from '../../api/apis'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,19 +28,7 @@ const Login = () => {
   const BtnClick = async(e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (email && pw && !isEmailError && !isPwError) {
-      try {
-        const res = await api.post(`/auth/signin`, { email: email, password: pw })
-        if (res.status >= 200) {
-          if (res.data.access_token) {
-            localStorage.setItem('token', res.data.access_token)
-            window.location.href = '/todo';
-          }
-        }
-      }
-      catch (error) {
-        console.log(error)
-        // if(error)alert('정보를 확인해주세요')
-      }
+      apiLogin(email,pw)
     }
   }
 

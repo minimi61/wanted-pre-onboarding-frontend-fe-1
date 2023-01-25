@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { api } from '../../api/apis';
+import { apiSignUp } from '../../api/apiSignUp';
 
 const SingUp = () => {
   const navigate = useNavigate();
@@ -32,15 +32,8 @@ const SingUp = () => {
   const BtnClick = async(e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (email && pw && pwCheck && !isEmailError && !isPwError && !pwCheckError) {
-      try {
-        const res = await api.post(`/auth/signup`, { email: email, password: pw })
-        if (res.status >= 200) {
-          navigate('/')
-        }
-      }
-      catch (error) {
-        alert('이미 존재하는 아이디입니다')
-      }
+      const result:number|undefined = await apiSignUp(email, pw)
+      if(result && result > 200)navigate('/')
     }
   }
   return (
